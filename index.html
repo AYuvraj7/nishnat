@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nishant Singh Thakur — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green: #10B981;
+    --green-light: #6EE7B7;
+    --dark: #0A0F0D;
+    --dark2: #111916;
+    --dark3: #182320;
+    --dark4: #1F2E29;
+    --text: #ECFDF5;
+    --text-muted: #6B9E8A;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: rgba(10,15,13,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(16,185,129,0.15); }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--green); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--green); }
+
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(16,185,129,0.07) 0%, transparent 70%); pointer-events: none; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); border-radius: 100px; padding: 0.4rem 1rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 1.5rem; }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 4vw, 4.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+  .hero-name span { color: var(--green); }
+  .hero-title { font-size: 1rem; font-weight: 300; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; border-left: 2px solid var(--green); padding-left: 1rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--green); color: var(--dark); padding: 0.8rem 2rem; border-radius: 4px; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.05em; text-decoration: none; text-transform: uppercase; transition: all 0.3s; }
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-2px); }
+  .btn-outline { border: 1px solid rgba(16,185,129,0.4); color: var(--green); padding: 0.8rem 2rem; border-radius: 4px; font-weight: 500; font-size: 0.9rem; text-decoration: none; text-transform: uppercase; transition: all 0.3s; }
+  .btn-outline:hover { border-color: var(--green); background: rgba(16,185,129,0.05); }
+
+  .hero-right { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .stat-card { background: var(--dark3); border: 1px solid rgba(16,185,129,0.12); border-radius: 12px; padding: 1.5rem; transition: border-color 0.3s; }
+  .stat-card:hover { border-color: rgba(16,185,129,0.35); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--green); }
+  .stat-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+  section { padding: 6rem 4rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-header { margin-bottom: 3rem; }
+  .section-tag { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .section-tag::before { content: ''; height: 1px; width: 32px; background: var(--green); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.15; }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .about-text p { font-size: 1rem; line-height: 1.8; color: rgba(236,253,245,0.8); margin-bottom: 1.25rem; }
+  .about-highlights { display: flex; flex-direction: column; gap: 1rem; }
+  .highlight-item { display: flex; align-items: flex-start; gap: 1rem; background: var(--dark3); border: 1px solid rgba(16,185,129,0.1); border-radius: 10px; padding: 1.2rem; }
+  .highlight-icon { width: 40px; height: 40px; min-width: 40px; background: rgba(16,185,129,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .highlight-text h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .highlight-text p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.5; margin: 0; }
+
+  .exp-bg { background: var(--dark2); }
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid rgba(236,253,245,0.07); }
+  .exp-date { font-size: 0.82rem; font-weight: 500; color: var(--green); padding-top: 0.2rem; }
+  .exp-role { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .exp-company { font-size: 0.9rem; color: var(--green); font-weight: 500; margin-bottom: 0.75rem; }
+  .exp-desc { font-size: 0.9rem; color: rgba(236,253,245,0.7); line-height: 1.7; }
+  .exp-skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+  .skill-tag { font-size: 0.75rem; font-weight: 500; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); color: var(--green); padding: 0.25rem 0.75rem; border-radius: 100px; }
+
+  .skills-bg { background: var(--dark2); }
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .skill-category { background: var(--dark3); border: 1px solid rgba(16,185,129,0.1); border-radius: 12px; padding: 1.5rem; }
+  .skill-category h3 { font-size: 0.9rem; font-weight: 700; color: var(--green); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(16,185,129,0.2); }
+  .skill-bubbles { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-bubble { font-size: 0.8rem; font-weight: 500; background: var(--dark4); border: 1px solid rgba(236,253,245,0.1); color: rgba(236,253,245,0.85); padding: 0.35rem 0.9rem; border-radius: 100px; transition: all 0.25s; }
+  .skill-bubble:hover { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3); color: var(--green); }
+
+  .edu-bg { background: var(--dark); }
+  .edu-cards { display: flex; flex-direction: column; gap: 1rem; max-width: 600px; }
+  .edu-card { background: var(--dark3); border: 1px solid rgba(16,185,129,0.15); border-radius: 14px; padding: 1.5rem 2rem; display: flex; gap: 1.5rem; align-items: center; }
+  .edu-icon { width: 52px; height: 52px; min-width: 52px; background: rgba(16,185,129,0.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+  .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .edu-school { font-size: 0.88rem; color: var(--green); font-weight: 500; }
+  .edu-info { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.3rem; }
+
+  .contact-bg { background: var(--dark2); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .contact-text p { font-size: 1rem; color: rgba(236,253,245,0.7); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text); background: var(--dark3); border: 1px solid rgba(236,253,245,0.08); border-radius: 10px; padding: 1rem 1.25rem; transition: all 0.3s; }
+  .contact-link:hover { border-color: rgba(16,185,129,0.3); color: var(--green); }
+  .contact-link-icon { width: 36px; height: 36px; background: rgba(16,185,129,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+  .contact-link span { font-size: 0.9rem; font-weight: 500; }
+
+  footer { padding: 2rem 4rem; border-top: 1px solid rgba(236,253,245,0.07); display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 0.82rem; color: var(--text-muted); }
+  .footer-green { color: var(--green); }
+
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-left > * { animation: fadeInUp 0.7s ease both; }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.35s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.5s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
+    .hero, section { padding: 5rem 1.5rem 3rem; }
+    .hero-grid, .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">NST</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-tag">Account Manager · Developer · Analyst</div>
+      <h1 class="hero-name">Nishant Singh<br><span>Thakur</span></h1>
+      <p class="hero-title">
+        Account Manager with 2 Years Experience<br>
+        JavaScript · React · HTML · CSS · MS Excel<br>
+        Jabalpur, Madhya Pradesh
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Get In Touch</a>
+        <a href="mailto:nishants.0a@gmail.com" class="btn-outline">Email Me</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-card">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Technical Skills</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">M.Sc</div>
+        <div class="stat-label">Mathematics</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">React</div>
+        <div class="stat-label">Frontend Development</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">About Me</div>
+      <h2 class="section-title">Disciplined Professional<br>& Tech Enthusiast</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I am Nishant Singh Thakur, a dedicated Account Manager based in Jabalpur with 2 years of professional experience. I am a decent and punctual person who believes in delivering quality work on time.</p>
+        <p>With a strong academic foundation in Mathematics from St. Aloysius College, Jabalpur, and hands-on skills in web technologies including JavaScript, React, HTML, and CSS, I bring a unique combination of analytical thinking and technical capability to everything I do.</p>
+        <p>My proficiency in MS Excel complements my account management role, enabling data-driven decision making and efficient workflow management.</p>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <div class="highlight-icon">💼</div>
+          <div class="highlight-text">
+            <h4>Account Manager</h4>
+            <p>2 years of experience managing accounts with precision and professionalism</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">⚛️</div>
+          <div class="highlight-text">
+            <h4>Frontend Developer</h4>
+            <p>Skilled in JavaScript, React, HTML & CSS — capable of building modern web interfaces</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">📊</div>
+          <div class="highlight-text">
+            <h4>Data & Analytics</h4>
+            <p>Proficient in MS Excel for data analysis, reporting and financial tracking</p>
+          </div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🎓</div>
+          <div class="highlight-text">
+            <h4>M.Sc Mathematics</h4>
+            <p>St. Aloysius College, Jabalpur — strong analytical and problem-solving foundation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="exp-bg">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Work Experience</div>
+      <h2 class="section-title">Professional Journey</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div>
+          <div class="exp-date">Current</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">2 Years</div>
+        </div>
+        <div>
+          <div class="exp-role">Account Manager</div>
+          <div class="exp-company">Current Organization · Jabalpur</div>
+          <div class="exp-desc">Managing client accounts with a focus on accuracy, timely delivery, and maintaining strong professional relationships. Leveraging MS Excel for data management, financial reporting, and account tracking. Known for punctuality and dependability in all professional engagements.</div>
+          <div class="exp-skills">
+            <span class="skill-tag">Account Management</span>
+            <span class="skill-tag">MS Excel</span>
+            <span class="skill-tag">Client Relations</span>
+            <span class="skill-tag">Data Reporting</span>
+            <span class="skill-tag">Financial Tracking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills-bg">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Skills</div>
+      <h2 class="section-title">Technical & Professional<br>Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>Frontend Development</h3>
+        <div class="skill-bubbles">
+          <span class="skill-bubble">JavaScript</span>
+          <span class="skill-bubble">React</span>
+          <span class="skill-bubble">HTML</span>
+          <span class="skill-bubble">CSS</span>
+          <span class="skill-bubble">Web Development</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>Data & Office Tools</h3>
+        <div class="skill-bubbles">
+          <span class="skill-bubble">MS Excel</span>
+          <span class="skill-bubble">Data Analysis</span>
+          <span class="skill-bubble">Reporting</span>
+          <span class="skill-bubble">Financial Tracking</span>
+          <span class="skill-bubble">Spreadsheets</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>Professional Skills</h3>
+        <div class="skill-bubbles">
+          <span class="skill-bubble">Account Management</span>
+          <span class="skill-bubble">Client Relations</span>
+          <span class="skill-bubble">Punctuality</span>
+          <span class="skill-bubble">Problem Solving</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>Mathematics & Analytics</h3>
+        <div class="skill-bubbles">
+          <span class="skill-bubble">Mathematical Analysis</span>
+          <span class="skill-bubble">Logical Reasoning</span>
+          <span class="skill-bubble">Statistical Thinking</span>
+          <span class="skill-bubble">Quantitative Analysis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="edu-bg">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Education</div>
+      <h2 class="section-title">Academic Background</h2>
+    </div>
+    <div class="edu-cards">
+      <div class="edu-card">
+        <div class="edu-icon">🔢</div>
+        <div>
+          <div class="edu-degree">Master of Science — Mathematics</div>
+          <div class="edu-school">St. Aloysius College, Jabalpur</div>
+          <div class="edu-info">Advanced studies in Mathematics — strong foundation in analytical & quantitative thinking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-bg">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <div class="contact-text">
+        <div class="section-header">
+          <div class="section-tag">Contact</div>
+          <h2 class="section-title">Let's Connect</h2>
+        </div>
+        <p>Open to new opportunities, collaborations, and professional connections. Feel free to reach out — I respond promptly!</p>
+        <a href="mailto:nishants.0a@gmail.com" class="btn-primary" style="display:inline-block;">Send Email →</a>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:nishants.0a@gmail.com" class="contact-link">
+          <div class="contact-link-icon">📧</div>
+          <span>nishants.0a@gmail.com</span>
+        </a>
+        <a href="tel:7974076760" class="contact-link">
+          <div class="contact-link-icon">📱</div>
+          <span>+91 7974076760</span>
+        </a>
+        <div class="contact-link" style="cursor:default;">
+          <div class="contact-link-icon">📍</div>
+          <span>Jabalpur, Madhya Pradesh</span>
+        </div>
+        <div class="contact-link" style="cursor:default;">
+          <div class="contact-link-icon">🎓</div>
+          <span>St. Aloysius College, Jabalpur</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <span class="footer-green">Nishant Singh Thakur</span>. All rights reserved.</p>
+  <p>Account Manager · <span class="footer-green">Frontend Developer</span></p>
+</footer>
+
+</body>
+</html>
